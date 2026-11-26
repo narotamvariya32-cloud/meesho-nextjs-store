@@ -52,7 +52,7 @@ export default function StoreShell({children}:{children:React.ReactNode}) {
     <style jsx global>{`
       html,body{max-width:500px!important;margin:0 auto!important;background:#fff!important;font-family:'Mier demi',Arial,sans-serif!important;font-size:12px!important}
       #container{min-height:85vh;background:#fff}
-      .original-meesho-logo{display:flex!important;align-items:center!important;width:90px!important;height:25px!important;line-height:0!important;padding:0!important;margin:0 10px!important;max-width:none!important;flex:0 0 90px!important}.original-meesho-logo svg{display:block!important;width:90px!important;height:25px!important;flex:none!important}
+      .original-meesho-logo{display:flex!important;align-items:center!important;width:90px!important;height:25px!important;line-height:0!important;padding:0!important;margin:0 10px!important;max-width:none!important;flex:0 0 90px!important;position:relative!important;top:-3px!important}.original-meesho-logo svg{display:block!important;width:90px!important;height:25px!important;flex:none!important}
       .original-menu-button{background:transparent!important;border:0!important;color:#333!important;font-size:22px!important;display:flex!important;align-items:center!important;justify-content:center!important;width:26px!important;height:26px!important;padding:1px!important;flex:0 0 26px!important}.original-menu-button svg{display:block!important;width:24px!important;height:24px!important}
       .original-cart-icon{position:relative}
       .original-cart-icon svg{vertical-align:middle}
