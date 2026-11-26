@@ -1,0 +1,52 @@
+MEESHO NEXT.JS PROJECT — HINDI SETUP
+
+IMPORTANT: Yeh PHP project nahi hai. Yeh Next.js + TypeScript rewrite hai, Vercel par deploy karne ke liye.
+
+1) DATABASE
+- MEESHO_DATABASE_IMPORT.zip ko alag se unzip karo.
+- MySQL/MariaDB database banao.
+- meesho_store_import.sql ko phpMyAdmin ya database provider se import karo.
+- Database ko Vercel se remotely connect hona chahiye. Vercel khud MySQL database provide nahi karta.
+
+2) GITHUB
+- Is project ZIP ko unzip karo.
+- Project folder ke andar ki saari files ek PRIVATE GitHub repository me upload karo.
+- Database SQL ZIP, .env.local, passwords aur keys GitHub me upload mat karna.
+
+3) VERCEL ENVIRONMENT VARIABLES
+Vercel > Project > Settings > Environment Variables me ye set karo:
+DB_HOST
+DB_PORT
+DB_USER
+DB_PASSWORD
+DB_NAME
+DB_SSL
+ADMIN_SESSION_SECRET
+NEXT_PUBLIC_SITE_URL
+PAYU_PAYMENT_URL (optional; test ke liye PayU test endpoint)
+BLOB_READ_WRITE_TOKEN
+
+ADMIN_SESSION_SECRET banane ke liye terminal/PowerShell me chalao:
+node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+
+NEXT_PUBLIC_SITE_URL me apna final Vercel domain likho, jaise https://your-store.vercel.app
+BLOB_READ_WRITE_TOKEN ke liye Vercel me Blob store create karke token add karo. Isse admin panel se naye banners/product images (maximum 4 MB each) upload honge.
+- SQL dump me purane domains ki multiple settings rows hain. NEXT_PUBLIC_SITE_URL current Vercel domain set karke Admin > Settings save karna; app current domain ke liye alag row banayega, purane settings rows ko overwrite nahi karega.
+
+4) DEPLOY & CHECK
+- Vercel me GitHub repository import karo aur Deploy karo.
+- Website open karke /api/health check karo. Database connected dikhna chahiye.
+- Admin: /administrator/login
+- Username: admin
+- Temporary password: MEESHO_DATABASE_IMPORT.zip ke DATABASE_SETUP.txt me diya hai.
+- Login ke baad turant Admin > Settings me password change karna.
+- UPI ID, payment methods, PayU credentials, Meta Pixel aur Google Analytics confirm karna.
+
+5) PAYMENT TEST
+- Pehle low-value test order karo.
+- UPI app khulne ka matlab payment confirmed nahi hai. UPI order Admin > Orders me verify karne ke baad hi Paid mark karna.
+- PayU ke liye sahi merchant key/salt aur production callback domain zaroori hai.
+- Shopify CSV import batch-wise hota hai, isliye large file ek hi long request mein process nahi hoti.
+- QR payment me source website ke mutabik 10% discount apply hota hai.
+
+PURANI PHP WEBSITE ko tab tak live rakho jab tak nayi website ke products, cart, address, UPI/QR, PayU, admin aur mobile browser tests pass na ho jayein.

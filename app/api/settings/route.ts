@@ -1,0 +1,2 @@
+import {NextResponse} from 'next/server';import {settings} from '@/lib/store';export const runtime = 'nodejs';
+export const dynamic='force-dynamic';export async function GET(){try{const s=await settings();return NextResponse.json({upi_id:s.upi_id,payment_method:s.payment_method,netbanking:Number(s.netbanking),payu:!!(s.merchant_key&&s.salt_key&&Number(s.netbanking)===1)});}catch{return NextResponse.json({upi_id:'',payment_method:'gpay,phonepe,paytm,bhim_upi,qr_code',netbanking:0,payu:false},{status:200})}}

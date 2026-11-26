@@ -1,0 +1,2 @@
+import Link from 'next/link';import {query} from '@/lib/db';import {safeImage} from '@/lib/store';
+export const dynamic='force-dynamic';export default async function Categories(){let rows:any[]=[];try{rows=await query('SELECT id,cat_name,cat_img,unique_id FROM category ORDER BY `index` ASC')}catch{}return <main className="container"><h1>All Categories</h1><div className="category-grid">{rows.map(c=><Link className="category-tile" href={`/category/${c.unique_id}`} key={c.id}><img src={safeImage(c.cat_img)}/><b>{c.cat_name}</b></Link>)}</div></main>}
