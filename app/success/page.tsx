@@ -18,7 +18,7 @@ function methodLabel(value: string) {
   return labels[value] || value;
 }
 
-export default async function Success({ searchParams }: { searchParams: Promise<{ order?: string; pending?: string }> }) {
+export default async function Success({ searchParams }: { searchParams: Promise<{ order?: string; pending?: string; utr?: string }> }) {
   const params = await searchParams;
   const orderId = Number(params.order || 0);
   let order: any = null;
@@ -56,6 +56,7 @@ export default async function Success({ searchParams }: { searchParams: Promise<
         <>
           <section className="summary">
             <div>Order number <b>{order.order_number}</b></div>
+            {params.utr ? <div>UTR / Transaction ID <b>{params.utr}</b></div> : null}
             <div>Total amount <b>₹{Number(order.total_amount || 0).toFixed(2)}</b></div>
             <div>Payment method <b>{methodLabel(String(order.payment_method || ''))}</b></div>
             <div>Payment status <b>{paymentStatusLabel}</b></div>

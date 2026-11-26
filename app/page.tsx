@@ -5,8 +5,7 @@ import DailyDealsTimer from '@/components/DailyDealsTimer';
 import {safeImage} from '@/lib/store';
 export const dynamic='force-dynamic';
 type P={id:number;unique_name:string;md5_slug?:string;name:string|null;selling_price:number|null;mrp:number|null;img1:string|null};
-export default async function Home(){let products:P[]=[],cats:any[]=[],banners:any[]=[],total=0;try{products=await query<P>('SELECT id,unique_name,MD5(CAST(id AS CHAR)) AS md5_slug,name,selling_price,mrp,img1 FROM tbl_product WHERE is_show=1 ORDER BY MOD(id,17),id LIMIT 30');total=Number((await query<any>('SELECT COUNT(*) AS total FROM tbl_product WHERE is_show=1'))[0]?.total||0);cats=await query('SELECT id,cat_name,cat_img,unique_id FROM category ORDER BY `index` ASC');banners=await query('SELECT id,image,link FROM tbl_banner WHERE status=1 ORDER BY id ASC');}catch{}return <main className="original-home">
-  <div className="categories"><div className="cat-list">{cats.map((c:any)=><Link className="category" href={`/category/${c.unique_id}`} key={c.id}><img src={safeImage(c.cat_img)} alt={c.cat_name}/><p>{c.cat_name}</p></Link>)}</div></div>
+export default async function Home(){let products:P[]=[],banners:any[]=[],total=0;try{products=await query<P>('SELECT id,unique_name,MD5(CAST(id AS CHAR)) AS md5_slug,name,selling_price,mrp,img1 FROM tbl_product WHERE is_show=1 ORDER BY MOD(id,17),id LIMIT 30');total=Number((await query<any>('SELECT COUNT(*) AS total FROM tbl_product WHERE is_show=1'))[0]?.total||0);banners=await query('SELECT id,image,link FROM tbl_banner WHERE status=1 ORDER BY id ASC');}catch{}return <main className="original-home">
   <nav className="menu"><div className="menu__item"><div className="marquee"><div className="marquee__inner"><span>LAST DAY SALE AT 3 PIC COMBO PRICE 199/-ONLY</span><span>&nbsp;</span><span>LAST DAY SALE AT 3 PIC COMBO PRICE 199/-ONLY</span><span>&nbsp;</span></div></div></div></nav>
   <div className="_3lqN6b">
     <div className="WhKF32">

@@ -6,18 +6,16 @@ import {useCart} from './CartProvider';
 export default function StoreShell({children}:{children:React.ReactNode}) {
   const {items}=useCart();
   const [search,setSearch]=useState('');
-  const [drawer,setDrawer]=useState(false);
   const [ready,setReady]=useState(false);
   useEffect(()=>setReady(true),[]);
   const count=ready?items.reduce((n,x)=>n+x.qty,0):0;
   return <>
-    <div className="overlay" style={{display:drawer?'block':'none'}} onClick={()=>setDrawer(false)} />
     <div id="container" style={{overflow:'hidden'}}>
       <div className="_2dxSCm">
         <div className="_3CzzrP"><div className="_38U37R"><div>
           <div className="_1FWdmb">
             <div className="d-flex align-items-center">
-              <button className="_3NH1qf original-menu-button" id="showmenu" aria-label="Open menu" onClick={()=>setDrawer(!drawer)}><span>☰</span></button>
+              <button className="_3NH1qf original-menu-button" id="showmenu" aria-label="Menu" type="button"><span>☰</span></button>
               <Link className="Z4_K_h original-meesho-logo" href="/">meesho</Link>
             </div>
             <div className="header-menu">
@@ -28,15 +26,14 @@ export default function StoreShell({children}:{children:React.ReactNode}) {
           <div className="search-bar"><div className="_3QNhdh"><div className="ORogdv"><div className="_1k9EoO"><div className="_2d36Hu"><div className="search-div"><span className="original-search-icon">⌕</span><input className="search-input-elm" value={search} onChange={e=>setSearch(e.target.value)} placeholder="Search for Sarees, Kurtis, Cosmetics, etc." /></div></div></div></div></div></div>
         </div></div></div>
       </div>
-      <aside className="original-drawer" style={{transform:drawer?'translateX(0)':'translateX(-105%)'}}><button onClick={()=>setDrawer(false)}>×</button><h3>Menu</h3><Link href="/">Home</Link><Link href="/category">Categories</Link><Link href="/cart">Cart</Link><Link href="/administrator/login">Admin</Link></aside>
       {children}
     </div>
     <div className="sc-bcXHqe fctQgp BottomNavBarstyled__StyledNavBar-sc-be71xz-0 iyYCAl">
       <Link href="/" className="sc-bcXHqe fctQgp BottomNavBarstyled__StyledNavItem-sc-be71xz-1 gREIBe"><span className="original-bottom-icon">⌂</span><span>Home</span></Link>
-      <Link href="/category" className="sc-bcXHqe fctQgp BottomNavBarstyled__StyledNavItem-sc-be71xz-1 gREIBe"><span className="original-bottom-icon">▤</span><span>Categories</span></Link>
-      <Link href="/success" className="sc-bcXHqe fctQgp BottomNavBarstyled__StyledNavItem-sc-be71xz-1 gREIBe"><span className="original-bottom-icon">▱</span><span>My Orders</span></Link>
-      <a href="mailto:support@example.com" className="sc-bcXHqe fctQgp BottomNavBarstyled__StyledNavItem-sc-be71xz-1 gREIBe"><span className="original-bottom-icon">ⓘ</span><span>Help</span></a>
-      <Link href="/administrator/login" className="sc-bcXHqe fctQgp BottomNavBarstyled__StyledNavItem-sc-be71xz-1 gREIBe"><span className="original-bottom-icon">☻</span><span>Account</span></Link>
+      <Link href="/" className="sc-bcXHqe fctQgp BottomNavBarstyled__StyledNavItem-sc-be71xz-1 gREIBe"><span className="original-bottom-icon">▤</span><span>Categories</span></Link>
+      <Link href="/" className="sc-bcXHqe fctQgp BottomNavBarstyled__StyledNavItem-sc-be71xz-1 gREIBe"><span className="original-bottom-icon">▱</span><span>My Orders</span></Link>
+      <Link href="/" className="sc-bcXHqe fctQgp BottomNavBarstyled__StyledNavItem-sc-be71xz-1 gREIBe"><span className="original-bottom-icon">ⓘ</span><span>Help</span></Link>
+      <Link href="/" className="sc-bcXHqe fctQgp BottomNavBarstyled__StyledNavItem-sc-be71xz-1 gREIBe"><span className="original-bottom-icon">☻</span><span>Account</span></Link>
     </div>
     <style jsx global>{`
       html,body{max-width:500px!important;margin:0 auto!important;background:#fff!important;font-family:'Mier demi',Arial,sans-serif!important;font-size:12px!important}
@@ -53,10 +50,6 @@ export default function StoreShell({children}:{children:React.ReactNode}) {
       .iyYCAl{position:fixed!important;bottom:0!important;left:50%!important;transform:translateX(-50%);width:100%!important;max-width:500px!important;z-index:1000}
       .gREIBe{flex:1;min-width:0}
       .original-bottom-icon{font-size:23px;line-height:24px;color:#9f2089}
-      .original-drawer{position:fixed;z-index:1200;left:max(0px,calc((100vw - 500px)/2));top:0;bottom:0;width:min(300px,85vw);background:white;box-shadow:0 0 20px #0003;padding:20px;display:flex;flex-direction:column;gap:20px;transition:transform .2s}
-      .original-drawer button{align-self:flex-end;border:0;background:white;font-size:28px}
-      .original-drawer h3{font-size:20px}
-      .original-drawer a{font-size:16px}
       @media(min-width:501px){html,body{border-left:1px solid #eee;border-right:1px solid #eee}}
     `}</style>
   </>;
